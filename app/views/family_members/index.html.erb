@@ -1,0 +1,23 @@
+<h1>Family Members Dashboard</h1>
+
+<%= link_to 'Add Family Member', new_family_member_path %>
+
+<table>
+  <tbody>
+    <% @family_members.each_with_index do |family_member, index| %>
+      <tr>
+        <td><%= index+1 %></td>
+        <td><%= family_member.name %></td>
+        <td><%= family_member.tasks.size %> tasks</td>
+        <td><%= link_to 'View Tasks', family_member %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div>
+  <%= link_to 'View All Tasks', tasks_path %>
+</div>
+
+<%== pagy_info(@pagy, item_name: 'Family Member'.pluralize(@pagy.count)) %>
+<%== pagy_nav(@pagy) %>

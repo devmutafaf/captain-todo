@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>All Tasks</h1>
+
+<div>
+  <%= link_to 'Add Task', new_task_path %>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Status</th>
+      <th>Family Member</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.name %></td>
+        <td><%= task.status %></td>
+        <td><%= task.family_member.name %></td>
+
+        <td>
+          <% if task.status.eql?("incomplete") %>
+            <%= form_tag task_status_path(task_id: task), method: "put", remote: true do |form| %>
+              <%= submit_tag "Mark as Complete" %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%== pagy_info(@pagy, item_name: 'Task'.pluralize(@pagy.count)) %>
+<%== pagy_nav(@pagy) %>

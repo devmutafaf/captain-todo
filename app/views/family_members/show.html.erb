@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+  Tasks assigned to <%= @family_member.name %>
+</h1>
+
+<div>
+  <%= link_to 'Add Task', new_task_path %>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @family_member.tasks.each do |task| %>
+      <tr>
+        <td><%= task.name %></td>
+        <td><%= task.status %></td>
+
+        <td>
+          <% if task.status.eql?("incomplete") %>
+            <%= form_tag task_status_path(task_id: task), method: "put", remote: true do |form| %>
+              <%= submit_tag "Mark as Complete" %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

@@ -1,0 +1,22 @@
+<%= form_with(model: family_member) do |form| %>
+  <% if family_member.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(family_member.errors.count, "error") %> prohibited this family_member from being saved:</h2>
+
+      <ul>
+        <% family_member.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
