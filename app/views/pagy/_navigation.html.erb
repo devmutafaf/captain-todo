@@ -1,0 +1,10 @@
+<% if pagy.count != 0 %>
+  <div class="pagi-count">
+    <strong> Showing <%= model_name %> <%= pagy.from %> to <%= pagy.to %> out of  <%= pagy.count %></strong>
+  </div>
+
+  <div class="pagination-navigation m-2 mx-auto">
+    <%== pagy_nav(@pagy) %>
+  </div>
+
+<% end %>

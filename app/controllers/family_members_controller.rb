@@ -8,10 +8,12 @@ class FamilyMembersController < ApplicationController
   end
 
   def show
+    @pagy, @tasks = pagy(@family_member.tasks)
   end
 
   def new
     @family_member = FamilyMember.new
+
   end
 
   def create

@@ -1,39 +1,48 @@
-<p id="notice"><%= notice %></p>
+<div class="px-md-5 mt-5 w-65">
 
-<h1>All Tasks</h1>
+  <h1>All Tasks</h1>
 
-<div>
-  <%= link_to 'Add Task', new_task_path %>
+  <div class="link-wrap m-4 mx-auto">
+      <%= link_to 'Add Task', new_task_path %>
+  </div>
+
+  <div class="index-table m-4 mx-auto">
+    <div class="table-header p-2">
+      <div class="d-flex flex-row p-2">
+        <div class="col-6 col-header">Task</div>
+        <div class="col-2 col-header">Status</div>
+        <div class="col-2 col-header">Family Member</div>
+        <div class="col-2 col-header">Actions</div>
+      </div>
+    </div>
+
+
+    <div class="table-body p-2">
+      <% @tasks.each do |task| %>
+          <div class="d-flex flex-row p-2">
+            <div class="col-6"><%= task.name %></div>
+            <div class="col-2">
+              <span class="badge badge-pill <%= badge_class(task.status) %>">
+                <%= task.status %>
+              </span>
+            </div>
+            <div class="col-2"><%= task.family_member.name %></div>
+            <div class="col-2">
+              <% if task.status.eql?("incomplete") %>
+                <%= form_tag task_status_path(task_id: task), method: "put", remote: true do |form| %>
+                  <%= submit_tag "Mark as Complete", class: 'underline link-primary bg-transparent border-0' %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+      <% end %>
+    </div>
+    <div class="border-top-2">
+      <div class="link-wrap m-4">
+        <strong><%= link_to '(View All Tasks)', tasks_path %></strong>
+      </div>
+    </div>
+  </div>
+
+  <%== render 'pagy/navigation', pagy: @pagy, model_name: 'tasks' %>
 </div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Task</th>
-      <th>Status</th>
-      <th>Family Member</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.name %></td>
-        <td><%= task.status %></td>
-        <td><%= task.family_member.name %></td>
-
-        <td>
-          <% if task.status.eql?("incomplete") %>
-            <%= form_tag task_status_path(task_id: task), method: "put", remote: true do |form| %>
-              <%= submit_tag "Mark as Complete" %>
-            <% end %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%== pagy_info(@pagy, item_name: 'Task'.pluralize(@pagy.count)) %>
-<%== pagy_nav(@pagy) %>

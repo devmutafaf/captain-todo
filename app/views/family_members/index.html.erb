@@ -1,23 +1,27 @@
-<h1>Family Members Dashboard</h1>
+<div class="px-md-5 mt-5 w-50">
 
-<%= link_to 'Add Family Member', new_family_member_path %>
+  <h1>Family Members Dashboard</h1>
 
-<table>
-  <tbody>
-    <% @family_members.each_with_index do |family_member, index| %>
-      <tr>
-        <td><%= index+1 %></td>
-        <td><%= family_member.name %></td>
-        <td><%= family_member.tasks.size %> tasks</td>
-        <td><%= link_to 'View Tasks', family_member %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="link-wrap m-4 mx-auto">
+    <%= link_to 'Add Family Member', new_family_member_path %>
+  </div>
 
-<div>
-  <%= link_to 'View All Tasks', tasks_path %>
+  <div class="index-table m-4 mx-auto">
+    <div class="table-body p-2">
+      <% @family_members.each_with_index do |family_member, index| %>
+        <div class="d-flex flex-row p-2">
+          <div class="col-6"><%= family_member.name %></div>
+          <div class="col-2"><%= family_member.tasks.size %> tasks</div>
+          <div class="col-2"><%= link_to '(View Tasks)', family_member %></div>
+        </div>
+      <% end %>
+    </div>
+    <div class="border-top-2">
+      <div class="link-wrap m-4">
+        <strong><%= link_to '(View All Tasks)', tasks_path %></strong>
+      </div>
+    </div>
+  </div>
+
+  <%== render 'pagy/navigation', pagy: @pagy, model_name: 'family members' %>
 </div>
-
-<%== pagy_info(@pagy, item_name: 'Family Member'.pluralize(@pagy.count)) %>
-<%== pagy_nav(@pagy) %>
