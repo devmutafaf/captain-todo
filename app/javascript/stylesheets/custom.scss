@@ -1,0 +1,43 @@
+* {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.21;
+}
+.captain-todo h1, .captain-todo h2 {
+  font-weight: 700;
+}
+.w-65 {
+  width: 65%;
+}
+
+.index-table {
+  border: 2px solid #000;
+}
+
+.border-top-2 {
+  border-top: 2px solid #000;
+}
+.pagination .page {
+  margin: 5px;
+  font-weight: 700;
+}
+
+.underline {
+  text-decoration: underline;
+}
+.col-header {
+  font-weight: 700;
+}
+.captain-todo .badge-pill {
+  border-radius: 1.25rem;
+  font-weight: normal;
+  text-transform: uppercase;
+  padding: 0.2rem 1rem;
+}
+.label {
+  font-weight: 700;
+}
+.input-field > input,
+.input-field > select {
+  height: 32px;
+  width: 200px;
+}

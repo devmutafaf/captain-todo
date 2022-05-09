@@ -14,13 +14,13 @@ ActiveStorage.start()
 
 
 
-
 require("@popperjs/core")
 
 import "bootstrap"
+
+// import 'stylesheets/application'
 import { Tooltip, Popover } from "bootstrap"
 
-require("../stylesheets/application.scss")
 
 // If you're using Turbolinks. Otherwise simply use: jQuery(function () {
 document.addEventListener("turbolinks:load", () => {
@@ -34,3 +34,6 @@ document.addEventListener("turbolinks:load", () => {
         return new Popover(popoverTriggerEl)
     })
 })
+
+
+
